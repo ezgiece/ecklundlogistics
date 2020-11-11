@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="YardCheckModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TblYardCheck">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Truck" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Problem" Type="varchar(max)" />
+          <Property Name="Note" Type="varchar(max)" />
+          <Property Name="DW" Type="varchar" MaxLength="5" />
+          <Property Name="UnitInDate" Type="date" />
+          <Property Name="UnitInTime" Type="varchar" MaxLength="5" />
+          <Property Name="ETAFixDate" Type="date" />
+          <Property Name="ETATime" Type="varchar" MaxLength="5" />
+          <Property Name="NeedDate" Type="date" />
+          <Property Name="NeedTime" Type="varchar" MaxLength="5" />
+          <Property Name="Location" Type="varchar" MaxLength="20" />
+          <Property Name="Ready" Type="varchar" MaxLength="5" />
+          <Property Name="AddedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="YardCheckModelStoreContainer">
+          <EntitySet Name="TblYardCheck" EntityType="Self.TblYardCheck" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YardCheckModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="YardCheckEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TblYardChecks" EntityType="YardCheckModel.TblYardCheck" />
+        </EntityContainer>
+        <EntityType Name="TblYardCheck">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Truck" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Problem" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DW" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="UnitInDate" Type="DateTime" Precision="0" />
+          <Property Name="UnitInTime" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ETAFixDate" Type="DateTime" Precision="0" />
+          <Property Name="ETATime" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="NeedDate" Type="DateTime" Precision="0" />
+          <Property Name="NeedTime" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ready" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YardCheckModelStoreContainer" CdmEntityContainer="YardCheckEntities">
+          <EntitySetMapping Name="TblYardChecks">
+            <EntityTypeMapping TypeName="YardCheckModel.TblYardCheck">
+              <MappingFragment StoreEntitySet="TblYardCheck">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="Ready" ColumnName="Ready" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="NeedTime" ColumnName="NeedTime" />
+                <ScalarProperty Name="NeedDate" ColumnName="NeedDate" />
+                <ScalarProperty Name="ETATime" ColumnName="ETATime" />
+                <ScalarProperty Name="ETAFixDate" ColumnName="ETAFixDate" />
+                <ScalarProperty Name="UnitInTime" ColumnName="UnitInTime" />
+                <ScalarProperty Name="UnitInDate" ColumnName="UnitInDate" />
+                <ScalarProperty Name="DW" ColumnName="DW" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Problem" ColumnName="Problem" />
+                <ScalarProperty Name="Truck" ColumnName="Truck" />
+                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

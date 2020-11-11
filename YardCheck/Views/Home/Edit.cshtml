@@ -1,0 +1,135 @@
+﻿@using YardCheck.Enum
+@model YardCheck.Context.TblYardCheck
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-wrapper-before"></div>
+        <div class="content-header row">
+            <div class="content-header-left col-md-4 col-12 mb-2">
+                <h3 class="content-header-title">Edit</h3>
+            </div>
+            <div class="content-header-right col-md-8 col-12">
+                <div class="breadcrumbs-top float-md-right">
+                    <div class="breadcrumb-wrapper mr-1">
+                        <ol class="breadcrumb">
+
+                            <li class="breadcrumb-item active">
+                                YARD CHECK/EMPTY TRUCKS/TRAILERS
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section class="textarea-select">
+
+                <div class="row match-height">
+
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Fill this form</h4>
+                            </div>
+                            <div class="card-block">
+                                <div class="card-body">
+                                    @using (Html.BeginForm("PutSave", "Home", FormMethod.Post))
+                                    {
+
+                                        @Html.HiddenFor(s => s.Id)
+                                        <h5 class="mt-2">Driver Name</h5>
+                                        <fieldset class="form-group">
+                                            @Html.TextBoxFor(s => s.DriverName, new { @class = "form-control", required = "required" })
+                                        </fieldset>
+
+                                        <h5 class="mt-2">Truck#</h5>
+                                        <fieldset class="form-group">
+                                            @Html.TextBoxFor(s => s.Truck, new { @class = "form-control", required = "required" })
+                                        </fieldset>
+
+                                        <h5 class="mt-2">Problem</h5>
+                                        <fieldset class="form-group">
+                                            @Html.TextAreaFor(s => s.Problem, new { @class = "form-control", placeholder = "Write Problem", rows = "3" })
+                                        </fieldset>
+
+                                        <h5 class="mt-2">Note</h5>
+                                        <fieldset class="form-group">
+                                            @Html.TextAreaFor(s => s.Note, new { @class = "form-control", placeholder = "Write Note", rows = "3" })
+                                        </fieldset>
+                                        <h5 class="mt-2">DW</h5>
+                                        <fieldset class="form-group">
+
+
+                                            @Html.DropDownListFor(s => s.DW,
+                        new SelectList(Enum.GetValues(typeof(DWEnum))),
+                        "Select",
+                        new { @class = "form-control" })
+                                        </fieldset>
+                                        <h5 class="mt-2">Unit-In Date</h5>
+                                        <fieldset class="form-group">
+                                            @Html.TextBoxFor(s => s.UnitInDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                        </fieldset>
+                                        <h5 class="mt-2">Unit-In Period</h5>
+                                        <fieldset class="form-group">
+                                            @Html.DropDownListFor(s => s.UnitInTime,
+                        new SelectList(MilitryTime.UnitInTime),
+                        "Select",
+                        new { @class = "form-control" })
+                                        </fieldset>
+
+                                        <h5 class="mt-2">ETA-Fix Date</h5>
+                                        <fieldset class="form-group">
+                                            @Html.TextBoxFor(s => s.ETAFixDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                        </fieldset>
+                                        <h5 class="mt-2">ETA-Fix Period</h5>
+                                        <fieldset class="form-group">
+                                            @Html.DropDownListFor(s => s.ETATime,
+                        new SelectList(MilitryTime.UnitInTime),
+                        "Select",
+                        new { @class = "form-control" })
+                                        </fieldset>
+                                        <h5 class="mt-2">Need Date</h5>
+                                        <fieldset class="form-group">
+                                            @Html.TextBoxFor(s => s.NeedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                        </fieldset>
+                                        <h5 class="mt-2">Need Period</h5>
+                                        <fieldset class="form-group">
+                                            @Html.DropDownListFor(s => s.NeedTime,
+                        new SelectList(MilitryTime.UnitInTime),
+                        "Select",
+                        new { @class = "form-control" })
+                                        </fieldset>
+                                        <h5 class="mt-2">Ready</h5>
+                                        <fieldset class="form-group">
+                                            @Html.DropDownListFor(s => s.Ready,
+                        new SelectList(Enum.GetValues(typeof(DWEnum))),
+                        "Select",
+                        new { @class = "form-control" })
+                                        </fieldset>
+                                        <h5 class="mt-2">Location</h5>
+                                        <fieldset class="form-group">
+                                            @Html.DropDownListFor(s => s.Location,
+                        new SelectList(Locations.Location),
+                        "Select",
+                        new { @class = "form-control" })
+                                        </fieldset>
+                                        <h5 class="mt-2"></h5>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn mr-1 mb-1 btn-success btn-lg">Save</button>
+                                            <button type="button" class="btn mr-1 mb-1 btn-danger btn-lg">Cancel</button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Textarea end -->
+            </section>
+        </div>
+    </div>
+</div>

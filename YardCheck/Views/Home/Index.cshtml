@@ -1,0 +1,150 @@
+﻿@*@model IEnumerable<YardCheck.Context.TblYardCheck>*@
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="app-content content" ng-controller="YardCheckListController" ng-app="YardCheckListApp">
+    <div class="content-wrapper">
+        <div class="content-wrapper-before"></div>
+        <div class="content-header row">
+            <div class="content-header-right col-md-8 col-12">
+                <div class="breadcrumbs-top float-md-right">
+                    <div class="breadcrumb-wrapper mr-1">
+                        <ol class="breadcrumb">
+
+                            <li class="breadcrumb-item active">
+                                YARD CHECK/EMPTY TRUCKS/TRAILERS
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <!-- Bordered table start -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-content collapse show">
+                            <div class="table-responsive">
+                                <div class="row addDiv">
+                                    <div class="col-sm-12 col-md-6">
+                                        <a href="#" ng-click="Add()"  class="btn mr-1 mb-1 btn-danger btn-sm">+ Add</a>
+                                    </div>
+                                </div>
+                                <table class="table table-striped table-bordered base-style" id="example">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Driver
+                                            </th>
+                                            <th>Truck#</th>
+                                            <th>Problem</th>
+                                            <th>Note</th>
+                                            <th>DW</th>
+                                            <th>Unit In  On</th>
+                                            <th>UnitIn Time</th>
+                                            <th>ETA.FixOn</th>
+                                            <th>Fix Time</th>
+                                            <th>NeedOn</th>
+                                            <th>Need Time</th>
+                                            <th>Ready</th>
+                                            <th>Location</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr role="row" ng-repeat="yc in YardCheckList" ng-class="yc.trClass">
+                                            <td id="tdDriverName_{{$index}}">   {{yc.DriverName}}</td>
+                                            <td id="tdTruck_{{$index}}">   {{yc.Truck}}</td>
+                                            <td id="tdProblem_{{$index}}"> <div ng-show="yc.Problem!=null">  {{yc.Problem}}</div></td>
+                                            <td id="tdNote_{{$index}}"><div ng-show="yc.Note!=null">    {{yc.Note}} </div></td>
+                                            <td id="tdDW_{{$index}}">
+                                                <select ng-if="yc.editing" id="selectDW_{{$index}}" class="form-control" ng-model="yc.DW">
+                                                      <option ng- ng-repeat="dw in DWList" ng-selected="dw==yc.dw" value="{{dw.Text}}">{{dw.Text}}</option>
+                                                </select>
+                                                <div ng-if="!yc.editing" ng-show="yc.DW!=null">{{yc.DW}}</div>
+                                            </td>
+                                            <td id="tdUnitInDate_{{$index}}">  <div ng-show="yc.UnitInDate!=null">  {{yc.UnitInDate| jsonDate }} </div> </td>
+                                            <td id="tdUnitInTime_{{$index}}">
+                                                <select ng-if="yc.editing" id="selectUnitInTime_{{$index}}" class="form-control" ng-model="yc.UnitInTime">
+                                                    <option ng- ng-repeat="mt in MilitryTimeList" ng-selected="mt==yc.UnitInTime" value="{{mt}}">{{mt}}</option>
+                                                </select>
+                                                <div ng-if="!yc.editing" ng-show="yc.UnitInTime!=null">  {{yc.UnitInTime}}</div>
+                                            </td>
+
+                                            <td id="tdETAFixDate_{{$index}}">  <div ng-show="yc.ETAFixDate!=null">  {{yc.ETAFixDate| jsonDate }} </div></td>
+                                            <td id="tdETATime_{{$index}}">
+
+                                                <select ng-if="yc.editing" id="selectETATime_{{$index}}" class="form-control" ng-model="yc.ETATime">
+                                                  
+                                                    <option ng- ng-repeat="mt in MilitryTimeList" ng-selected="mt==yc.ETATime" value="{{mt}}">{{mt}}</option>
+                                                </select>
+
+                                                <div ng-if="!yc.editing" ng-show="yc.ETATime!=null">  {{yc.ETATime}}</div>
+                                            </td>
+
+                                            <td id="tdNeedDate_{{$index}}"><div ng-show="yc.NeedDate!=null">    {{yc.NeedDate| jsonDate}} </div></td>
+
+                                            <td id="tdNeedTime_{{$index}}">
+
+
+
+                                                <select ng-if="yc.editing" id="selectNeedTime_{{$index}}" class="form-control" ng-model="yc.NeedTime">
+                                                    
+                                                    <option ng- ng-repeat="mt in MilitryTimeList" ng-selected="mt==yc.NeedTime" value="{{mt}}">{{mt}}</option>
+                                                </select>
+
+                                                <div ng-if="!yc.editing" ng-show="yc.NeedTime!=null">  {{yc.NeedTime}}</div>
+
+                                            </td>
+
+                                            <td id="tdReady_{{$index}}">
+                                                <select ng-if="yc.editing" id="selectReady_{{$index}}" class="form-control" ng-model="yc.Ready">
+                                                 
+                                                    <option ng- ng-repeat="dw in DWList" ng-selected="dw==yc.Ready" value="{{dw.Text}}">{{dw.Text}}</option>
+                                                </select>
+                                                <div ng-if="!yc.editing" ng-show="yc.Ready!=null" >{{yc.Ready}}</div>
+
+                                            </td>
+                                            <td id="tdLocation_{{$index}}">
+                                                <select ng-if="yc.editing" id="selectLocation_{{$index}}" class="form-control" ng-model="yc.Location">
+                                                   
+                                                    <option ng- ng-repeat="l in LocationList" ng-selected="l==yc.Location" value="{{l}}">{{l}}</option>
+                                                </select>
+                                                <div ng-if="!yc.editing" ng-show="yc.Location!=null">{{yc.Location}}</div>
+
+
+                                            </td>
+                                            <td class="priority">
+                                                <div ng-if="!yc.editing">
+                                                    <a  href="#" ng-click="Edit(yc,$index)" class="btn mr-1 mb-1 btn-danger btn-sm">Edit</a>
+                                                </div>
+                                                <div ng-if="yc.editing">
+                                                    <div class="col-sm-12">
+                                                        <a  href="#" class="btn mr-1 mb-1 btn-danger btn-sm">
+                                                            <span style="color:white;" class="fa fa-save" ng-click="Save($index,1)"></span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <a  href="#" class="btn mr-1 mb-1 btn-danger btn-sm"><span style="color:white" class="fa fa-remove" ng-click="Cancel($index)"></span></a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="priority">
+                                                <a  href="#"  ng-click="Delete(yc.Id)" class="btn mr-1 mb-1 btn-danger btn-sm">Delete</a>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                  
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bordered table end -->
+        </div>
+    </div>
+</div>
